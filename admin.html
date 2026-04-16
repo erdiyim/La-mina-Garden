@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La'mina Garden - Yönetim Paneli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --green-dark: #1a3c15;
+            --green-primary: #2d5a27;
+            --green-medium: #3e7a35;
+            --green-light: #5a9e50;
+            --green-pale: #e8f0e6;
+            --gold: #c8a96e;
+            --gold-light: #ddc99a;
+            --cream: #faf8f4;
+            --cream-dark: #f0ece4;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #7a7a7a;
+            --white: #ffffff;
+            --red: #e74c3c;
+            --red-light: #fdeaea;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --radius: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* ===== LOGIN ===== */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--green-dark), #0f2b0c);
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 48px 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-box h1 {
+            font-size: 1.5rem;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+
+        .login-box p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--cream-dark);
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--green-primary);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 14px;
+            background: var(--green-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 8px;
+        }
+
+        .login-box button:hover { background: var(--green-medium); }
+
+        .login-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ===== LAYOUT ===== */
+        .admin-wrapper { display: none; }
+        .admin-wrapper.active { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--green-dark);
+            color: var(--white);
+            padding: 24px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-brand h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .sidebar-brand h2 span { color: var(--gold); }
+
+        .sidebar-brand small {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .sidebar-menu { list-style: none; }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu li a:hover,
+        .sidebar-menu li a.active {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+            border-left-color: var(--gold);
+        }
+
+        .sidebar-menu li a i { width: 20px; text-align: center; }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-bottom a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar-bottom a:hover { color: var(--red); }
+
+        /* Main */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 32px;
+            min-height: 100vh;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .main-header h1 {
+            font-size: 1.6rem;
+            color: var(--green-dark);
+        }
+
+        /* Panels */
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 i { color: var(--gold); }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--cream-dark);
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-add {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--green-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover { background: var(--green-medium); }
+
+        .btn-danger {
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-danger:hover { opacity: 0.8; }
+
+        /* Item Lists */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 16px;
+            background: var(--cream);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .item-row:hover { background: var(--cream-dark); }
+
+        .item-row .item-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-medium);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .item-row .item-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-row .item-details {
+            flex: 1;
+        }
+
+        .item-row .item-details h4 {
+            font-size: 0.95rem;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+        }
+
+        .item-row .item-details p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .item-row .item-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Image Upload */
+        .upload-area {
+            border: 2px dashed var(--cream-dark);
+            border-radius: 10px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--cream);
+            margin-bottom: 16px;
+        }
+
+        .upload-area:hover {
+            border-color: var(--green-primary);
+            background: var(--green-pale);
+        }
+
+        .upload-area i {
+            font-size: 2rem;
+            color: var(--green-medium);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .upload-area p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.2rem;
+        }
+
+        .stat-card .stat-icon.green {
+            background: var(--green-pale);
+            color: var(--green-primary);
+        }
+
+        .stat-card .stat-icon.gold {
+            background: #fdf3e1;
+            color: var(--gold);
+        }
+
+        .stat-card .stat-icon.blue {
+            background: #e8f0fe;
+            color: #4285f4;
+        }
+
+        .stat-card .stat-icon.pink {
+            background: #fde8ef;
+            color: #e91e63;
+        }
+
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+            justify-content: center;
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--green-primary);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-content { margin-left: 0; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <h1><i class="fas fa-leaf" style="color: #2d5a27;"></i> La'mina Garden</h1>
+            <p>Yönetim Paneli'ne giriş yapın</p>
+            <input type="text" id="loginUser" placeholder="Kullanıcı Adı">
+            <input type="password" id="loginPass" placeholder="Şifre">
+            <button onclick="doLogin()">Giriş Yap</button>
+            <p class="login-error" id="loginError">Kullanıcı adı veya şifre hatalı!</p>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div class="admin-wrapper" id="adminWrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>La'mina <span>Garden</span></h2>
+                <small>Yönetim Paneli</small>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-panel="dashboard"><i class="fas fa-th-large"></i> Genel Bakış</a></li>
+                <li><a href="#" data-panel="photos"><i class="fas fa-image"></i> Fotoğraflar</a></li>
+                <li><a href="#" data-panel="events"><i class="fas fa-calendar-alt"></i> Etkinlikler</a></li>
+                <li><a href="#" data-panel="reviews"><i class="fas fa-star"></i> Yorumlar</a></li>
+                <li><a href="#" data-panel="settings"><i class="fas fa-cog"></i> Ayarlar</a></li>
+            </ul>
+            <div class="sidebar-bottom">
+                <a href="index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Siteyi Görüntüle</a>
+                <a href="#" onclick="doLogout()" style="margin-top:12px;"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- ===== DASHBOARD ===== -->
+            <div class="panel active" id="panel-dashboard">
+                <div class="main-header">
+                    <h1>Genel Bakış</h1>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-image"></i></div>
+                        <h3 id="statPhotos">0</h3>
+                        <p>Fotoğraf</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gold"><i class="fas fa-calendar-alt"></i></div>
+                        <h3 id="statEvents">0</h3>
+                        <p>Etkinlik</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-star"></i></div>
+                        <h3 id="statReviews">0</h3>
+                        <p>Yorum</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pink"><i class="fas fa-eye"></i></div>
+                        <h3>-</h3>
+                        <p>Ziyaretçi</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-info-circle"></i> Hoş Geldiniz</h3>
+                    <p style="color:var(--text-medium); line-height:1.7;">
+                        Bu panel üzerinden sitenize fotoğraf ekleyebilir, etkinlik oluşturabilir ve Google yorumlarını yönetebilirsiniz.
+                        Sol menüden ilgili bölüme tıklayarak işlem yapabilirsiniz.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== PHOTOS ===== -->
+            <div class="panel" id="panel-photos">
+                <div class="main-header">
+                    <h1>Fotoğraf Yönetimi</h1>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-plus-circle"></i> Yeni Fotoğraf Ekle</h3>
+                    <div class="form-group">
+                        <label>Fotoğraf Seçin</label>
+                        <div class="upload-area" id="photoUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Fotoğraf yüklemek için tıklayın veya sürükleyin</p>
+                            <input type="file" id="photoFile" accept="image/*">
+                            <img id="photoPreview" class="image-preview" style="display:none;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Başlık</label>
+                            <input type="text" id="photoTitle" placeholder="Örn: Havuz başı görünüm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <select id="photoCategory">
+                                <option value="mekan">Mekân</option>
+                                <option value="etkinlik">Etkinlik</option>
+                                <option value="organizasyon">Organizasyon</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-add" onclick="addPhoto()"><i class="fas fa-plus"></i> Fotoğraf Ekle</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-images"></i> Mevcut Fotoğraflar</h3>
+                    <div class="item-list" id="photoList">
+                        <p style="color:var(--text-light); text-align:center; padding:20px;">Henüz fotoğraf eklenmemiş.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== EVENTS ===== -->
+            <div class="panel" id="panel-events">
+                <div class="main-header">
+                    <h1>Etkinlik Yönetimi</h1>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-plus-circle"></i> Yeni Etkinlik Ekle</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Etkinlik Adı</label>
+                            <input type="text" id="eventTitle" placeholder="Örn: Hıdırellez Gecesi">
+                        </div>
+                        <div class="form-group">
+                            <label>Tarih</label>
+                            <input type="date" id="eventDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea id="eventDesc" placeholder="Etkinlik hakkında kısa bilgi yazın..."></textarea>
+                    </div>
+                    <button class="btn-add" onclick="addEvent()"><i class="fas fa-plus"></i> Etkinlik Ekle</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-list"></i> Mevcut Etkinlikler</h3>
+                    <div class="item-list" id="eventList">
+                        <p style="color:var(--text-light); text-align:center; padding:20px;">Henüz etkinlik eklenmemiş.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== REVIEWS ===== -->
+            <div class="panel" id="panel-reviews">
+                <div class="main-header">
+                    <h1>Yorum Yönetimi</h1>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-plus-circle"></i> Yeni Yorum Ekle</h3>
+                    <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:16px;">
+                        Google Maps'teki güzel yorumları buraya ekleyin, sitede otomatik görünsün.
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Kişi Adı</label>
+                            <input type="text" id="reviewAuthor" placeholder="Örn: Ayşe K.">
+                        </div>
+                        <div class="form-group">
+                            <label>Yıldız Sayısı</label>
+                            <select id="reviewStars">
+                                <option value="5">5 Yıldız</option>
+                                <option value="4">4 Yıldız</option>
+                                <option value="3">3 Yıldız</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Yorum Metni</label>
+                        <textarea id="reviewText" placeholder="Google'daki yorumu buraya yapıştırın..."></textarea>
+                    </div>
+                    <button class="btn-add" onclick="addReview()"><i class="fas fa-plus"></i> Yorum Ekle</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-comments"></i> Mevcut Yorumlar</h3>
+                    <div class="item-list" id="reviewList">
+                        <p style="color:var(--text-light); text-align:center; padding:20px;">Henüz yorum eklenmemiş.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SETTINGS ===== -->
+            <div class="panel" id="panel-settings">
+                <div class="main-header">
+                    <h1>Ayarlar</h1>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-lock"></i> Şifre Değiştir</h3>
+                    <div class="form-group">
+                        <label>Yeni Şifre</label>
+                        <input type="password" id="newPassword" placeholder="Yeni şifrenizi girin">
+                    </div>
+                    <div class="form-group">
+                        <label>Şifreyi Tekrar Girin</label>
+                        <input type="password" id="newPasswordConfirm" placeholder="Tekrar girin">
+                    </div>
+                    <button class="btn-add" onclick="changePassword()"><i class="fas fa-save"></i> Şifreyi Güncelle</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-phone-alt"></i> İletişim Bilgileri</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" id="settingsPhone" placeholder="0(5XX) XXX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp Numarası</label>
+                            <input type="text" id="settingsWhatsapp" placeholder="905XXXXXXXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram Kullanıcı Adı</label>
+                        <input type="text" id="settingsInstagram" placeholder="laminagarden">
+                    </div>
+                    <button class="btn-add" onclick="saveSettings()"><i class="fas fa-save"></i> Kaydet</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-bullhorn"></i> Kampanya Bannerı</h3>
+                    <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:16px;">
+                        Sitede hero bölümünün altında görünecek kampanya/duyuru mesajı.
+                    </p>
+                    <div class="form-group">
+                        <label>Kampanya Metni</label>
+                        <input type="text" id="settingsCampaign" placeholder="Örn: 🌞 Yaz Sezonu Açıldı! Havuz başı kahvaltıda %20 indirim!">
+                    </div>
+                    <div class="form-group" style="display:flex; align-items:center; gap:12px;">
+                        <input type="checkbox" id="settingsCampaignActive" style="width:auto;">
+                        <label for="settingsCampaignActive" style="margin:0;">Kampanyayı Aktif Et</label>
+                    </div>
+                    <button class="btn-add" onclick="saveCampaign()"><i class="fas fa-save"></i> Kampanyayı Kaydet</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <script>
+    // ===== LOCAL CREDENTIALS (login stays local) =====
+    const DEFAULT_DATA = {
+        credentials: { user: 'admin', pass: 'lamina2026' },
+        photos: [],
+        events: [],
+        reviews: [],
+        settings: {
+            phone: '0(545) 971 12 85',
+            whatsapp: '905459711285',
+            instagram: 'laminagarden'
+        }
+    };
+
+    function getLocalData() {
+        const stored = localStorage.getItem('laminaData');
+        if (stored) return JSON.parse(stored);
+        localStorage.setItem('laminaData', JSON.stringify(DEFAULT_DATA));
+        return DEFAULT_DATA;
+    }
+
+    function saveLocalData(data) {
+        localStorage.setItem('laminaData', JSON.stringify(data));
+    }
+
+    // ===== TOAST =====
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ===== LOGIN =====
+    function doLogin() {
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        const data = getLocalData();
+
+        if (user === data.credentials.user && pass === data.credentials.pass) {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminWrapper').classList.add('active');
+            sessionStorage.setItem('laminaLoggedIn', 'true');
+            refreshAll();
+        } else {
+            document.getElementById('loginError').style.display = 'block';
+        }
+    }
+
+    function doLogout() {
+        sessionStorage.removeItem('laminaLoggedIn');
+        document.getElementById('adminWrapper').classList.remove('active');
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('loginUser').value = '';
+        document.getElementById('loginPass').value = '';
+        document.getElementById('loginError').style.display = 'none';
+    }
+
+    // Auto-login if session exists
+    if (sessionStorage.getItem('laminaLoggedIn')) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminWrapper').classList.add('active');
+    }
+
+    // Enter key login
+    document.getElementById('loginPass').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') doLogin();
+    });
+
+    // ===== SIDEBAR NAVIGATION =====
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.sidebar-menu a').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            const panelId = link.getAttribute('data-panel');
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + panelId).classList.add('active');
+        });
+    });
+
+    // ===== PHOTOS =====
+    const photoUploadArea = document.getElementById('photoUploadArea');
+    const photoFile = document.getElementById('photoFile');
+    const photoPreview = document.getElementById('photoPreview');
+    let currentPhotoData = null;
+
+    photoUploadArea.addEventListener('click', () => photoFile.click());
+
+    photoUploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        photoUploadArea.style.borderColor = 'var(--green-primary)';
+    });
+
+    photoUploadArea.addEventListener('dragleave', () => {
+        photoUploadArea.style.borderColor = '';
+    });
+
+    photoUploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        photoUploadArea.style.borderColor = '';
+        if (e.dataTransfer.files.length) {
+            photoFile.files = e.dataTransfer.files;
+            handlePhotoSelect();
+        }
+    });
+
+    photoFile.addEventListener('change', handlePhotoSelect);
+
+    function handlePhotoSelect() {
+        const file = photoFile.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            currentPhotoData = e.target.result;
+            photoPreview.src = currentPhotoData;
+            photoPreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    async function addPhoto() {
+        const title = document.getElementById('photoTitle').value.trim();
+        const category = document.getElementById('photoCategory').value;
+
+        if (!title) return showToast('Lütfen bir başlık girin!');
+        if (!currentPhotoData && !photoFile.files[0]) return showToast('Lütfen bir fotoğraf seçin!');
+
+        showToast('Fotoğraf yükleniyor...');
+
+        // Firebase Storage varsa dosyayı yükle, yoksa base64 kullan
+        let imageUrl = currentPhotoData;
+        if (photoFile.files[0]) {
+            imageUrl = await DataStore.uploadImage(photoFile.files[0]);
+        }
+
+        await DataStore.add('photos', {
+            title: title,
+            category: category,
+            image: imageUrl,
+            date: new Date().toLocaleDateString('tr-TR')
+        });
+
+        // Reset
+        document.getElementById('photoTitle').value = '';
+        photoPreview.style.display = 'none';
+        currentPhotoData = null;
+        photoFile.value = '';
+
+        await refreshPhotos();
+        await refreshStats();
+        showToast('Fotoğraf başarıyla eklendi!');
+    }
+
+    async function deletePhoto(id) {
+        if (!confirm('Bu fotoğrafı silmek istediğinize emin misiniz?')) return;
+        await DataStore.remove('photos', id.toString());
+        await refreshPhotos();
+        await refreshStats();
+        showToast('Fotoğraf silindi.');
+    }
+
+    async function refreshPhotos() {
+        const photos = await DataStore.getAll('photos');
+        const list = document.getElementById('photoList');
+
+        if (photos.length === 0) {
+            list.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Henüz fotoğraf eklenmemiş.</p>';
+            return;
+        }
+
+        list.innerHTML = photos.map(photo => `
+            <div class="item-row">
+                <div class="item-thumb"><img src="${photo.image}" alt="${photo.title}"></div>
+                <div class="item-details">
+                    <h4>${photo.title}</h4>
+                    <p>${photo.category} - ${photo.date || ''}</p>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-danger" onclick="deletePhoto('${photo.id}')"><i class="fas fa-trash"></i> Sil</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ===== EVENTS =====
+    async function addEvent() {
+        const title = document.getElementById('eventTitle').value.trim();
+        const date = document.getElementById('eventDate').value;
+        const desc = document.getElementById('eventDesc').value.trim();
+
+        if (!title || !date) return showToast('Lütfen etkinlik adı ve tarih girin!');
+
+        await DataStore.add('events', {
+            title: title,
+            date: date,
+            desc: desc
+        });
+
+        document.getElementById('eventTitle').value = '';
+        document.getElementById('eventDate').value = '';
+        document.getElementById('eventDesc').value = '';
+
+        await refreshEvents();
+        await refreshStats();
+        showToast('Etkinlik başarıyla eklendi!');
+    }
+
+    async function deleteEvent(id) {
+        if (!confirm('Bu etkinliği silmek istediğinize emin misiniz?')) return;
+        await DataStore.remove('events', id.toString());
+        await refreshEvents();
+        await refreshStats();
+        showToast('Etkinlik silindi.');
+    }
+
+    async function refreshEvents() {
+        const events = await DataStore.getAll('events');
+        const list = document.getElementById('eventList');
+        const months = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+
+        if (events.length === 0) {
+            list.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Henüz etkinlik eklenmemiş.</p>';
+            return;
+        }
+
+        list.innerHTML = events.map(event => {
+            const d = new Date(event.date);
+            const dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+            return `
+                <div class="item-row">
+                    <div class="item-thumb"><i class="fas fa-calendar-alt" style="font-size:1.2rem;"></i></div>
+                    <div class="item-details">
+                        <h4>${event.title}</h4>
+                        <p>${dateStr} - ${event.desc || 'Açıklama yok'}</p>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-danger" onclick="deleteEvent('${event.id}')"><i class="fas fa-trash"></i> Sil</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ===== REVIEWS =====
+    async function addReview() {
+        const author = document.getElementById('reviewAuthor').value.trim();
+        const stars = parseInt(document.getElementById('reviewStars').value);
+        const text = document.getElementById('reviewText').value.trim();
+
+        if (!author || !text) return showToast('Lütfen kişi adı ve yorum metnini girin!');
+
+        await DataStore.add('reviews', {
+            author: author,
+            stars: stars,
+            text: text,
+            date: new Date().toLocaleDateString('tr-TR')
+        });
+
+        document.getElementById('reviewAuthor').value = '';
+        document.getElementById('reviewText').value = '';
+
+        await refreshReviews();
+        await refreshStats();
+        showToast('Yorum başarıyla eklendi!');
+    }
+
+    async function deleteReview(id) {
+        if (!confirm('Bu yorumu silmek istediğinize emin misiniz?')) return;
+        await DataStore.remove('reviews', id.toString());
+        await refreshReviews();
+        await refreshStats();
+        showToast('Yorum silindi.');
+    }
+
+    async function refreshReviews() {
+        const reviews = await DataStore.getAll('reviews');
+        const list = document.getElementById('reviewList');
+
+        if (reviews.length === 0) {
+            list.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Henüz yorum eklenmemiş.</p>';
+            return;
+        }
+
+        list.innerHTML = reviews.map(review => {
+            const starsHtml = '<i class="fas fa-star" style="color:#f5b731;"></i>'.repeat(review.stars);
+            return `
+                <div class="item-row">
+                    <div class="item-thumb"><i class="fas fa-user" style="font-size:1.2rem;"></i></div>
+                    <div class="item-details">
+                        <h4>${review.author} ${starsHtml}</h4>
+                        <p>${review.text.substring(0, 80)}${review.text.length > 80 ? '...' : ''}</p>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-danger" onclick="deleteReview('${review.id}')"><i class="fas fa-trash"></i> Sil</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ===== SETTINGS =====
+    async function loadSettings() {
+        const settings = await DataStore.getSettings();
+        document.getElementById('settingsPhone').value = settings.phone || '';
+        document.getElementById('settingsWhatsapp').value = settings.whatsapp || '';
+        document.getElementById('settingsInstagram').value = settings.instagram || '';
+    }
+
+    async function saveSettings() {
+        const settings = {
+            phone: document.getElementById('settingsPhone').value.trim(),
+            whatsapp: document.getElementById('settingsWhatsapp').value.trim(),
+            instagram: document.getElementById('settingsInstagram').value.trim()
+        };
+        await DataStore.saveSettings(settings);
+        showToast('Ayarlar kaydedildi!');
+    }
+
+    function changePassword() {
+        const newPass = document.getElementById('newPassword').value;
+        const confirmPass = document.getElementById('newPasswordConfirm').value;
+
+        if (!newPass) return showToast('Lütfen yeni şifre girin!');
+        if (newPass !== confirmPass) return showToast('Şifreler eşleşmiyor!');
+        if (newPass.length < 4) return showToast('Şifre en az 4 karakter olmalı!');
+
+        const data = getLocalData();
+        data.credentials.pass = newPass;
+        saveLocalData(data);
+
+        document.getElementById('newPassword').value = '';
+        document.getElementById('newPasswordConfirm').value = '';
+        showToast('Şifre başarıyla güncellendi!');
+    }
+
+    // ===== CAMPAIGN =====
+    async function loadCampaign() {
+        const settings = await DataStore.getSettings();
+        document.getElementById('settingsCampaign').value = settings.campaignText || '';
+        document.getElementById('settingsCampaignActive').checked = settings.campaignActive || false;
+    }
+
+    async function saveCampaign() {
+        const settings = await DataStore.getSettings();
+        settings.campaignText = document.getElementById('settingsCampaign').value.trim();
+        settings.campaignActive = document.getElementById('settingsCampaignActive').checked;
+        await DataStore.saveSettings(settings);
+        showToast('Kampanya ayarları kaydedildi!');
+    }
+
+    // ===== STATS =====
+    async function refreshStats() {
+        const photos = await DataStore.getAll('photos');
+        const events = await DataStore.getAll('events');
+        const reviews = await DataStore.getAll('reviews');
+        document.getElementById('statPhotos').textContent = photos.length;
+        document.getElementById('statEvents').textContent = events.length;
+        document.getElementById('statReviews').textContent = reviews.length;
+    }
+
+    // ===== REFRESH ALL =====
+    async function refreshAll() {
+        await Promise.all([
+            refreshPhotos(),
+            refreshEvents(),
+            refreshReviews(),
+            refreshStats(),
+            loadSettings(),
+            loadCampaign()
+        ]);
+    }
+
+    // Init
+    if (sessionStorage.getItem('laminaLoggedIn')) {
+        refreshAll();
+    }
+    </script>
+</body>
+</html>

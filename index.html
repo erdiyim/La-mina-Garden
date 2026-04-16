@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics (GA4) - Tracking ID'yi kendi hesabınızla değiştirin -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <meta name="description" content="La'mina Garden - Başıbüyük'ün kalbinde doğayla iç içe semaver, mangal, piknik, havuz başı kahvaltı, özel loca ve organizasyon hizmetleri.">
+    <meta name="keywords" content="La'mina Garden, Maltepe, Başıbüyük, semaver, mangal, piknik, havuz başı kahvaltı, düğün, nişan, kır düğünü, İstanbul">
+    <title>La'mina Garden | Doğanın Kalbinde</title>
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2d5a27">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="La'mina Garden">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="img/favicon.jpg">
+    <link rel="apple-touch-icon" href="img/favicon.jpg">
+    <!-- Open Graph -->
+    <meta property="og:title" content="La'mina Garden | Doğanın Kalbinde">
+    <meta property="og:description" content="Başıbüyük'ün kalbinde doğayla iç içe semaver, mangal, piknik, havuz başı kahvaltı, özel loca ve organizasyon hizmetleri.">
+    <meta property="og:image" content="https://laminagarden.net/img/hero-bg.jpeg">
+    <meta property="og:url" content="https://laminagarden.net">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="La'mina Garden | Doğanın Kalbinde">
+    <meta name="twitter:description" content="Başıbüyük'ün kalbinde doğayla iç içe semaver, mangal, piknik, havuz başı kahvaltı ve organizasyon hizmetleri.">
+    <meta name="twitter:image" content="https://laminagarden.net/img/hero-bg.jpeg">
+    <!-- Schema Markup (Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "La'mina Garden",
+        "description": "Başıbüyük'ün kalbinde doğayla iç içe semaver, mangal, piknik, havuz başı kahvaltı, özel loca ve organizasyon hizmetleri.",
+        "image": "img/hero-bg.jpeg",
+        "url": "https://laminagarden.net",
+        "telephone": "+905459711285",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Hilal Sk. No:14",
+            "addressLocality": "Maltepe",
+            "addressRegion": "İstanbul",
+            "postalCode": "34858",
+            "addressCountry": "TR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 40.9529,
+            "longitude": 29.1713
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "09:00",
+            "closes": "23:30"
+        },
+        "servesCuisine": ["Türk Mutfağı", "Kahvaltı", "Mangal"],
+        "priceRange": "$$",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "23",
+            "bestRating": "5"
+        },
+        "sameAs": [
+            "https://www.instagram.com/laminagarden/"
+        ],
+        "hasMap": "https://maps.app.goo.gl/1qPLtyxkMq8csjUG6",
+        "amenityFeature": [
+            {"@type": "LocationFeatureSpecification", "name": "Otopark", "value": true},
+            {"@type": "LocationFeatureSpecification", "name": "Havuz", "value": true},
+            {"@type": "LocationFeatureSpecification", "name": "Açık Alan", "value": true}
+        ]
+    }
+    </script>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===================== INTRO CURTAIN ===================== -->
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="curtain curtain-top"></div>
+        <div class="curtain curtain-bottom"></div>
+        <div class="intro-content">
+            <span class="intro-leaf"><i class="fas fa-leaf"></i></span>
+            <h1 class="intro-title">La'mina Garden</h1>
+            <p class="intro-subtitle">Doğanın Kalbinde</p>
+        </div>
+    </div>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">La'mina <span>Garden</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link active" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                <li><a href="#about" class="nav-link" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+                <li><a href="#services" class="nav-link" data-tr="Hizmetler" data-en="Services">Hizmetler</a></li>
+                <li><a href="#events" class="nav-link" data-tr="Etkinlikler" data-en="Events">Etkinlikler</a></li>
+                <li><a href="#gallery" class="nav-link" data-tr="Medya" data-en="Gallery">Medya</a></li>
+                <li><a href="#faq" class="nav-link" data-tr="SSS" data-en="FAQ">SSS</a></li>
+                <li><a href="#contact" class="nav-link" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                <li><a href="https://wa.me/905459711285?text=Merhaba,%20rezervasyon%20yapmak%20istiyorum." target="_blank" rel="noopener" class="nav-link nav-cta" data-tr="Rezervasyon" data-en="Book Now">Rezervasyon</a></li>
+            </ul>
+            <button class="lang-toggle" id="langToggle" title="Switch to English">
+                <span class="lang-flag">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-google-badge" data-animate>
+                <i class="fas fa-star" style="color:#f5b731;"></i> <strong>4.8</strong>/5 Google <span data-tr="Puanı" data-en="Rating">Puanı</span>
+            </div>
+            <span class="hero-badge"><i class="fas fa-leaf"></i> Başıbüyük, Maltepe</span>
+            <h1>La'mina Garden</h1>
+            <p class="hero-desc" data-tr="Ormanın huzurunda, şehrin yakınında.<br>Doğayla iç içe unutulmaz anlar yaşayın." data-en="In the serenity of the forest, close to the city.<br>Experience unforgettable moments surrounded by nature.">Ormanın huzurunda, şehrin yakınında.<br>Doğayla iç içe unutulmaz anlar yaşayın.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary" data-tr="Keşfet" data-en="Explore">Keşfet</a>
+                <a href="https://wa.me/905459711285?text=Merhaba,%20rezervasyon%20yapmak%20istiyorum." target="_blank" rel="noopener" class="btn btn-outline" data-tr="Rezervasyon Yap" data-en="Book Now">Rezervasyon Yap</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- ===================== CAMPAIGN BANNER ===================== -->
+    <div class="campaign-banner" id="campaignBanner" style="display:none;">
+        <div class="container">
+            <div class="campaign-content">
+                <span class="campaign-icon"><i class="fas fa-bullhorn"></i></span>
+                <p id="campaignText"></p>
+                <a href="https://wa.me/905459711285?text=Merhaba,%20kampanya%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="campaign-btn" data-tr="Bilgi Al" data-en="Learn More">Bilgi Al</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag" data-tr="Biz Kimiz" data-en="Who We Are">Biz Kimiz</span>
+                <h2 data-tr="Hakkımızda" data-en="About Us">Hakkımızda</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image" data-animate>
+                    <div class="img-loading-wrapper">
+                        <img src="img/mekan.jpeg" alt="La'mina Garden Mekân" style="width:100%; height:100%; object-fit:cover; border-radius:16px;" loading="lazy">
+                    </div>
+                </div>
+                <div class="about-text" data-animate>
+                    <h3>Doğayla İç İçe Bir Deneyim</h3>
+                    <p>La'mina Garden, İstanbul Maltepe Başıbüyük'ün yeşil ormanları arasında konuklarını ağırlıyor. Huzurlu atmosferi, zengin hizmet seçenekleri ve sıcak misafirperverliği ile özel günlerinizi ve keyifli vakitlerinizi unutulmaz kılıyoruz.</p>
+                    <p>Semaver başında sohbetten, mangal partilerine; havuz başı kahvaltıdan, rüya gibi düğün organizasyonlarına kadar her an için ideal mekânız.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-tree"></i>
+                            <span>Ormanlık Alan</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-users"></i>
+                            <span>Özel Organizasyon</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-heart"></i>
+                            <span>Sıcak Atmosfer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Ne Sunuyoruz</span>
+                <h2>Hizmetlerimiz</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-fire"></i></div>
+                    <h3>Semaver</h3>
+                    <p>Ormanın içinde, doğal ortamda demli çay eşliğinde huzurlu bir mola.</p>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-drumstick-bite"></i></div>
+                    <h3>Mangal</h3>
+                    <p>Aileniz ve dostlarınızla yeşilliklerin arasında keyifli mangal partileri.</p>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-campground"></i></div>
+                    <h3>Piknik Alanı</h3>
+                    <p>Geniş piknik alanları ile çocuklarınız ve sevdiklerinizle doğayı keşfedin.</p>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-swimming-pool"></i></div>
+                    <h3>Havuz Başı Kahvaltı</h3>
+                    <p>Havuz başında zengin serpme kahvaltı ile günün en güzel başlangıcı.</p>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-door-open"></i></div>
+                    <h3>Özel Loca</h3>
+                    <p>Özel localarımızda mahremiyetinizi koruyarak keyifli vakit geçirin.</p>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon"><i class="fas fa-ring"></i></div>
+                    <h3>Düğün & Organizasyon</h3>
+                    <p>Evlilik teklifi, söz, nişan, nikâh ve düğün organizasyonları için rüya gibi bir mekân.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PRICE NOTE ===================== -->
+    <div class="price-note" data-animate>
+        <div class="container">
+            <p><i class="fas fa-info-circle"></i> <span data-tr="Fiyat bilgisi ve detaylı menü için lütfen bizi arayın." data-en="Please call us for pricing and detailed menu information.">Fiyat bilgisi ve detaylı menü için lütfen bizi arayın.</span> <a href="tel:+905459711285">0(545) 971 12 85</a></p>
+        </div>
+    </div>
+
+    <!-- ===================== WHY US ===================== -->
+    <section id="whyus" class="section whyus">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag" data-tr="Farkımız" data-en="Our Difference">Farkımız</span>
+                <h2 data-tr="Neden La'mina Garden?" data-en="Why La'mina Garden?">Neden La'mina Garden?</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="whyus-grid">
+                <div class="whyus-card" data-animate>
+                    <div class="whyus-icon"><i class="fas fa-tree"></i></div>
+                    <h3 data-tr="Eşsiz Doğa" data-en="Unique Nature">Eşsiz Doğa</h3>
+                    <p data-tr="Başıbüyük ormanlarının kalbinde, şehrin gürültüsünden uzak, huzurlu bir ortam." data-en="A peaceful setting in the heart of Başıbüyük forests, away from city noise.">Başıbüyük ormanlarının kalbinde, şehrin gürültüsünden uzak, huzurlu bir ortam.</p>
+                </div>
+                <div class="whyus-card" data-animate>
+                    <div class="whyus-icon"><i class="fas fa-car"></i></div>
+                    <h3 data-tr="Kolay Ulaşım & Otopark" data-en="Easy Access & Parking">Kolay Ulaşım & Otopark</h3>
+                    <p data-tr="Geniş otopark alanı ile aracınızı rahatça park edin, mekâna kolayca ulaşın." data-en="Spacious parking area. Easily accessible by car.">Geniş otopark alanı ile aracınızı rahatça park edin, mekâna kolayca ulaşın.</p>
+                </div>
+                <div class="whyus-card" data-animate>
+                    <div class="whyus-icon"><i class="fas fa-child"></i></div>
+                    <h3 data-tr="Aile Dostu" data-en="Family Friendly">Aile Dostu</h3>
+                    <p data-tr="Çocuklarınız için güvenli oyun alanları, ailece keyifli vakit geçirebileceğiniz bir mekân." data-en="Safe play areas for children, a place where the whole family can enjoy.">Çocuklarınız için güvenli oyun alanları, ailece keyifli vakit geçirebileceğiniz bir mekân.</p>
+                </div>
+                <div class="whyus-card" data-animate>
+                    <div class="whyus-icon"><i class="fas fa-utensils"></i></div>
+                    <h3 data-tr="Taze & Lezzetli" data-en="Fresh & Delicious">Taze & Lezzetli</h3>
+                    <p data-tr="Günlük taze ürünlerle hazırlanan kahvaltı ve yemekler, doğal lezzetler." data-en="Breakfast and meals prepared with daily fresh products, natural flavors.">Günlük taze ürünlerle hazırlanan kahvaltı ve yemekler, doğal lezzetler.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== COUNTER ===================== -->
+    <section class="counter-section">
+        <div class="counter-overlay"></div>
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item" data-animate>
+                    <div class="counter-number" data-target="1500">0</div>
+                    <span>+</span>
+                    <p data-tr="Mutlu Misafir" data-en="Happy Guests">Mutlu Misafir</p>
+                </div>
+                <div class="counter-item" data-animate>
+                    <div class="counter-number" data-target="200">0</div>
+                    <span>+</span>
+                    <p data-tr="Organizasyon" data-en="Events Organized">Organizasyon</p>
+                </div>
+                <div class="counter-item" data-animate>
+                    <div class="counter-number" data-target="5">0</div>
+                    <span></span>
+                    <p data-tr="Yıllık Deneyim" data-en="Years of Experience">Yıllık Deneyim</p>
+                </div>
+                <div class="counter-item" data-animate>
+                    <div class="counter-number" data-target="4.8">0</div>
+                    <span><i class="fas fa-star" style="color:#f5b731;"></i></span>
+                    <p data-tr="Google Puanı" data-en="Google Rating">Google Puanı</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PARALLAX DIVIDER ===================== -->
+    <section class="parallax-divider">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content" data-animate>
+            <h2>Özel Günlerinizi Bizimle Kutlayın</h2>
+            <p>Evlilik teklifi, nişan, düğün... Hayalinizdeki organizasyonu birlikte tasarlayalım.</p>
+            <a href="#contact" class="btn btn-primary">Bize Ulaşın</a>
+        </div>
+    </section>
+
+    <!-- ===================== COUNTDOWN ===================== -->
+    <div class="countdown-banner" id="countdownBanner" style="display:none;">
+        <div class="container">
+            <div class="countdown-label" data-tr="YAKLAŞAN ETKİNLİK" data-en="UPCOMING EVENT">YAKLAŞAN ETKİNLİK</div>
+            <div class="countdown-event-name" id="countdownEventName"></div>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="cd-number" id="cdDays">00</span>
+                    <span class="cd-label" data-tr="Gün" data-en="Days">Gün</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="cd-number" id="cdHours">00</span>
+                    <span class="cd-label" data-tr="Saat" data-en="Hours">Saat</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="cd-number" id="cdMinutes">00</span>
+                    <span class="cd-label" data-tr="Dakika" data-en="Minutes">Dakika</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="cd-number" id="cdSeconds">00</span>
+                    <span class="cd-label" data-tr="Saniye" data-en="Seconds">Saniye</span>
+                </div>
+            </div>
+            <a href="https://wa.me/905459711285?text=Merhaba,%20etkinlik%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="countdown-cta" data-tr="<i class='fab fa-whatsapp'></i> Rezervasyon Yap" data-en="<i class='fab fa-whatsapp'></i> Book Now">
+                <i class="fab fa-whatsapp"></i> Rezervasyon Yap
+            </a>
+        </div>
+    </div>
+
+    <!-- ===================== EVENTS ===================== -->
+    <section id="events" class="section events">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Neler Oluyor</span>
+                <h2>Etkinlikler</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="events-grid" id="eventsGrid">
+                <div class="event-card" data-animate>
+                    <div class="event-date">
+                        <span class="event-day">5</span>
+                        <span class="event-month">Mayıs</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Hıdırellez Gecesi</h3>
+                        <p>Anadolu Yakası'nda gerçekleşen tek ateşten atlama etkinliği! Geleneksel Hıdırellez kutlaması La'mina Garden'da.</p>
+                        <span class="event-tag"><i class="fas fa-map-marker-alt"></i> La'mina Garden, Başıbüyük</span>
+                    </div>
+                </div>
+            </div>
+            <div class="events-empty" id="eventsEmpty" style="display:none;">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Şu an planlanmış etkinlik bulunmuyor. Yeni etkinlikler için bizi takip edin!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== REVIEWS ===================== -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Misafirlerimiz Ne Diyor</span>
+                <h2>Yorumlar</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Atmosferi çok keyifli; hem güzel bir kahvaltı yapıp hem de doğayla iç içe vakit geçirmek isteyenler için harika bir yer. Kahvaltı ürünleri taze ve oldukça lezzetliydi. Çalışanlar güler yüzlü ve ortam samimi."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Rozerin Can</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Ailece gittik. Sıcak atmosferi vardı. Güleryüzlü personeli ile karşıladı. Havuz başında mangal keyfi ve semaver hizmeti dört dörtlüktü."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Sevda Demir</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Çok memnun kaldığımız bir aile işletmesi, rastgele gittik fakat hemen hemen her hafta buradayız. Hizmet, servis, her şey harika."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Murat Aktaş</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Kahvaltı için tercih ettik güzel ve yeterli bir kahvaltıydı. Hızlı bir şekilde hazırlandı. İşletme sahibi ve çalışanı güler yüzlüydü, teşekkürler."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Mustafa Gözde Kara</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Çok nezih güzel bir ortam. Ailenizle rahatlıkla gelebilirsiniz. Ayrıca konum itibarı ile çok güzel rüzgar alıyor, serin oluyor. Bizimle ilgilenen Muammer Beye çok teşekkürler."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Muhammed Efe Niğdelioğlu</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" data-animate>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Ailecek çok keyifli zamanlar geçirebileceğiniz bir mekân, kesinlikle tavsiye ederim."</p>
+                    <div class="review-author">
+                        <div class="review-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Bülent Altınbaş</h4>
+                            <span>Google Yorumu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Görsellerimiz</span>
+                <h2>Medya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="gallery-filters" data-animate>
+                <button class="filter-btn active" data-filter="all">Tümünü Göster</button>
+                <button class="filter-btn" data-filter="mekan">Mekân</button>
+                <button class="filter-btn" data-filter="etkinlik">Etkinlik</button>
+                <button class="filter-btn" data-filter="organizasyon">Organizasyon</button>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- MEKÂN -->
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (3).jpeg" alt="Havuz Başı Gece Ambiyansı" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (5).jpeg" alt="Balon Dome ve Havuz" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (18).jpeg" alt="Havuz Gece Mavi Işıklar" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (26).jpeg" alt="Drone Havuz Görünümü" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (11).jpeg" alt="Gece Ambiyansı" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="mekan" data-animate>
+                    <img src="img/1 (32).jpeg" alt="Türk Kahvesi ve Dome" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <!-- ETKİNLİK -->
+                <div class="gallery-item" data-category="etkinlik" data-animate>
+                    <img src="img/1 (1).jpeg" alt="Doğum Günü Kutlaması" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="etkinlik" data-animate>
+                    <img src="img/1 (2).jpeg" alt="Doğum Günü Organizasyonu" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="etkinlik" data-animate>
+                    <img src="img/1 (8).jpeg" alt="Havuz Başı Kahvaltı" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="etkinlik" data-animate>
+                    <img src="img/1 (13).jpeg" alt="Özel Doğum Günü" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="etkinlik" data-animate>
+                    <img src="img/1 (15).jpeg" alt="Serpme Kahvaltı" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <!-- ORGANİZASYON -->
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (4).jpeg" alt="Bekarlığa Veda" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (22).jpeg" alt="Evlilik Teklifi" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (27).jpeg" alt="Düğün Pastası" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (23).jpeg" alt="Düğün Eğlencesi" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (21).jpeg" alt="Nişan Töreni" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+                <div class="gallery-item" data-category="organizasyon" data-animate>
+                    <img src="img/1 (25).jpeg" alt="Drone Gece Etkinlik" style="width:100%;height:240px;object-fit:cover;border-radius:12px;" loading="lazy">
+                </div>
+            </div>
+            <div class="gallery-instagram" data-animate>
+                <a href="https://www.instagram.com/laminagarden/" target="_blank" rel="noopener" class="instagram-link">
+                    <i class="fab fa-instagram"></i> Instagram'da Bizi Takip Edin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="section faq">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag" data-tr="Merak Edilenler" data-en="FAQ">Merak Edilenler</span>
+                <h2 data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Otopark imkânı var mı?" data-en="Is there parking available?">
+                        Otopark imkânı var mı?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="Evet, mekânımızda misafirlerimiz için ücretsiz otopark alanı mevcuttur." data-en="Yes, we have free parking available for our guests.">
+                        Evet, mekânımızda misafirlerimiz için ücretsiz otopark alanı mevcuttur.
+                    </div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Kaç kişilik organizasyon yapılabilir?" data-en="What is the maximum capacity for events?">
+                        Kaç kişilik organizasyon yapılabilir?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="Mekânımızda 20 kişilik özel localardan 500+ kişilik büyük düğün organizasyonlarına kadar her ölçekte etkinlik düzenleyebilirsiniz." data-en="We can host events ranging from intimate gatherings of 20 people in private lodges to large wedding organizations of 500+ guests.">
+                        Mekânımızda 20 kişilik özel localardan 500+ kişilik büyük düğün organizasyonlarına kadar her ölçekte etkinlik düzenleyebilirsiniz.
+                    </div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Havuz kullanımı dahil mi?" data-en="Is pool access included?">
+                        Havuz kullanımı dahil mi?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="Havuz başı kahvaltı ve organizasyonlarda havuz manzarası dahildir. Havuz kullanımı hakkında detaylı bilgi için bizimle iletişime geçebilirsiniz." data-en="Pool view is included with poolside breakfast and events. Please contact us for details about pool usage.">
+                        Havuz başı kahvaltı ve organizasyonlarda havuz manzarası dahildir. Havuz kullanımı hakkında detaylı bilgi için bizimle iletişime geçebilirsiniz.
+                    </div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Rezervasyon nasıl yapılır?" data-en="How can I make a reservation?">
+                        Rezervasyon nasıl yapılır?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="WhatsApp üzerinden veya telefonla bize ulaşarak kolayca rezervasyon yapabilirsiniz. Sayfanın altındaki yeşil WhatsApp butonuna tıklamanız yeterli." data-en="You can easily make a reservation by contacting us via WhatsApp or phone. Simply click the green WhatsApp button at the bottom of the page.">
+                        WhatsApp üzerinden veya telefonla bize ulaşarak kolayca rezervasyon yapabilirsiniz. Sayfanın altındaki yeşil WhatsApp butonuna tıklamanız yeterli.
+                    </div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Çalışma saatleri nedir?" data-en="What are the opening hours?">
+                        Çalışma saatleri nedir?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="Mekânımız her gün 09:00 - 23:30 saatleri arasında hizmet vermektedir. Özel organizasyonlar için esnek saatler sunulmaktadır." data-en="We are open daily from 09:00 to 23:30. Flexible hours are available for special events.">
+                        Mekânımız her gün 09:00 - 23:30 saatleri arasında hizmet vermektedir. Özel organizasyonlar için esnek saatler sunulmaktadır.
+                    </div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-question" data-tr="Dışarıdan yiyecek/içecek getirilebilir mi?" data-en="Can I bring my own food/drinks?">
+                        Dışarıdan yiyecek/içecek getirilebilir mi?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-tr="Mangal ve piknik alanlarımıza kendi malzemelerinizi getirebilirsiniz. Organizasyonlar için menü seçeneklerimiz hakkında bilgi almak için bizi arayın." data-en="You can bring your own supplies to our BBQ and picnic areas. For events, please call us for our menu options.">
+                        Mangal ve piknik alanlarımıza kendi malzemelerinizi getirebilirsiniz. Organizasyonlar için menü seçeneklerimiz hakkında bilgi almak için bizi arayın.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Bize Ulaşın</span>
+                <h2>İletişim & Rezervasyon</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info" data-animate>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Başıbüyük, Hilal Sk. No:14,<br>34858 Maltepe/İstanbul</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p><a href="tel:+905459711285">0(545) 971 12 85</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p><a href="https://www.instagram.com/laminagarden/" target="_blank" rel="noopener">@laminagarden</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp Rezervasyon</h4>
+                            <p><a href="https://wa.me/905459711285?text=Merhaba,%20rezervasyon%20yapmak%20istiyorum." target="_blank" rel="noopener">WhatsApp ile Yazın</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://www.instagram.com/laminagarden/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905459711285" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/1qPLtyxkMq8csjUG6" target="_blank" rel="noopener" aria-label="Google Maps"><i class="fas fa-map-marked-alt"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper" data-animate>
+                    <div class="reservation-form">
+                        <h3><i class="fas fa-calendar-check" style="color:var(--gold);"></i> <span data-tr="Hızlı Rezervasyon" data-en="Quick Reservation">Hızlı Rezervasyon</span></h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-tr="Adınız Soyadınız" data-en="Full Name">Adınız Soyadınız</label>
+                                <input type="text" id="rezName" placeholder="Adınız Soyadınız" data-tr="Adınız Soyadınız" data-en="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label data-tr="Telefon" data-en="Phone">Telefon</label>
+                                <input type="tel" id="rezPhone" placeholder="05XX XXX XX XX" data-tr="05XX XXX XX XX" data-en="05XX XXX XX XX">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-tr="Tarih" data-en="Date">Tarih</label>
+                                <input type="date" id="rezDate">
+                            </div>
+                            <div class="form-group">
+                                <label data-tr="Kişi Sayısı" data-en="Number of Guests">Kişi Sayısı</label>
+                                <input type="number" id="rezGuests" placeholder="Örn: 10" min="1" data-tr="Örn: 10" data-en="e.g. 10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-tr="Hizmet Türü" data-en="Service Type">Hizmet Türü</label>
+                            <select id="rezService">
+                                <option value="Kahvaltı" data-tr="Havuz Başı Kahvaltı" data-en="Poolside Breakfast">Havuz Başı Kahvaltı</option>
+                                <option value="Mangal" data-tr="Mangal & Piknik" data-en="BBQ & Picnic">Mangal & Piknik</option>
+                                <option value="Semaver" data-tr="Semaver" data-en="Samovar">Semaver</option>
+                                <option value="Doğum Günü" data-tr="Doğum Günü" data-en="Birthday">Doğum Günü</option>
+                                <option value="Nişan/Söz" data-tr="Nişan / Söz" data-en="Engagement">Nişan / Söz</option>
+                                <option value="Düğün" data-tr="Düğün / Nikâh" data-en="Wedding">Düğün / Nikâh</option>
+                                <option value="Evlilik Teklifi" data-tr="Evlilik Teklifi" data-en="Proposal">Evlilik Teklifi</option>
+                                <option value="Diğer" data-tr="Diğer" data-en="Other">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-tr="Notunuz (opsiyonel)" data-en="Notes (optional)">Notunuz (opsiyonel)</label>
+                            <textarea id="rezNotes" rows="3" placeholder="Özel isteklerinizi yazabilirsiniz..." data-tr="Özel isteklerinizi yazabilirsiniz..." data-en="Write your special requests..."></textarea>
+                        </div>
+                        <button class="btn-reservation" id="rezSubmit">
+                            <i class="fab fa-whatsapp"></i> <span data-tr="WhatsApp ile Gönder" data-en="Send via WhatsApp">WhatsApp ile Gönder</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map-full" data-animate>
+                <iframe
+                    src="https://maps.google.com/maps?q=La'mina+Garden+Ba%C5%9F%C4%B1b%C3%BCy%C3%BCk+Maltepe+%C4%B0stanbul&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"
+                    title="La'mina Garden Konum">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>La'mina <span>Garden</span></h3>
+                    <p>Doğayla iç içe, huzur dolu anlar için sizi bekliyoruz.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Erişim</h4>
+                    <ul>
+                        <li><a href="#about">Hakkımızda</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="#events">Etkinlikler</a></li>
+                        <li><a href="#gallery">Medya</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="#services">Semaver & Mangal</a></li>
+                        <li><a href="#services">Piknik Alanı</a></li>
+                        <li><a href="#services">Havuz Başı Kahvaltı</a></li>
+                        <li><a href="#services">Düğün & Organizasyon</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>İletişim</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Başıbüyük, Hilal Sk. No:14, Maltepe</p>
+                    <p><i class="fas fa-phone-alt"></i> 0(545) 971 12 85</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/laminagarden/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905459711285" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 La'mina Garden. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p><i class="fas fa-cookie-bite"></i> <span data-tr="Bu web sitesi deneyiminizi geliştirmek için çerezleri kullanmaktadır." data-en="This website uses cookies to enhance your experience.">Bu web sitesi deneyiminizi geliştirmek için çerezleri kullanmaktadır.</span> <a href="#" data-tr="KVKK Aydınlatma Metni" data-en="Privacy Policy">KVKK Aydınlatma Metni</a></p>
+            <div class="cookie-buttons">
+                <button class="cookie-accept" id="cookieAccept" data-tr="Kabul Et" data-en="Accept">Kabul Et</button>
+                <button class="cookie-decline" id="cookieDecline" data-tr="Reddet" data-en="Decline">Reddet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle" id="themeToggle" title="Karanlık Mod">
+        <span id="themeIcon">🌙</span>
+        <span class="theme-label" data-tr="Karanlık Mod" data-en="Dark Mode" id="themeLabel">Karanlık Mod</span>
+    </div>
+
+    <!-- Ambient Sound Toggle -->
+    <div class="sound-toggle" id="soundToggle" title="Doğa sesi">
+        <div class="sound-bars">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span class="sound-label" data-tr="Doğa Sesi" data-en="Nature Sound">Doğa Sesi</span>
+    </div>
+    <audio id="ambientAudio" loop preload="none">
+        <source src="audio/ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Weather Widget -->
+    <div class="weather-widget" id="weatherWidget" style="display:none;">
+        <span class="weather-icon" id="weatherIcon"></span>
+        <div>
+            <div class="weather-temp" id="weatherTemp"></div>
+            <div class="weather-desc" id="weatherDesc"></div>
+            <div class="weather-location">Maltepe, İstanbul</div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="javascript:void(0)" class="whatsapp-float" id="whatsappToggle" aria-label="WhatsApp ile iletişime geçin">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- WhatsApp Popup -->
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <div class="whatsapp-popup-header">
+            <div class="wp-avatar"><i class="fab fa-whatsapp"></i></div>
+            <div class="wp-info">
+                <h4>La'mina Garden</h4>
+                <span data-tr="Genellikle hemen yanıt verir" data-en="Usually replies instantly">Genellikle hemen yanıt verir</span>
+            </div>
+            <button class="whatsapp-popup-close" id="whatsappClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="whatsapp-popup-body">
+            <div class="whatsapp-popup-msg">
+                <span data-tr="Merhaba! La'mina Garden'a hoş geldiniz. Size nasıl yardımcı olabiliriz? Rezervasyon, fiyat bilgisi veya organizasyon detayları için yazabilirsiniz." data-en="Hello! Welcome to La'mina Garden. How can we help you? You can write for reservations, pricing, or event details.">Merhaba! La'mina Garden'a hoş geldiniz. Size nasıl yardımcı olabiliriz? Rezervasyon, fiyat bilgisi veya organizasyon detayları için yazabilirsiniz.</span>
+                <span class="msg-time" id="wpMsgTime"></span>
+            </div>
+            <div class="whatsapp-popup-input">
+                <input type="text" id="wpMessageInput" placeholder="Mesajınızı yazın..." data-tr="Mesajınızı yazın..." data-en="Type your message...">
+                <button id="wpSendBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
